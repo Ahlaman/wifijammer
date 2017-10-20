@@ -100,8 +100,9 @@ def get_mon_iface(args):
     global monitor_on
     monitors, interfaces = iwconfig()
     if args.interface:
-        monitor_on = True
-        return args.interface
+        os.system('pkill NetworkManager')
+        monmode = start_mon_mode(args.interface)
+        return monmode
     if len(monitors) > 0:
         monitor_on = True
         return monitors[0]
