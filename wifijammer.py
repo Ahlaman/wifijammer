@@ -424,11 +424,9 @@ def AP_check(addr1, addr2):
 
 def stop(signal, frame):
     if monitor_on:
-        os.system('service network-manager restart')
         sys.exit('\n['+R+'!'+W+'] Closing')
     else:
         remove_mon_iface(mon_iface)
-        os.system('service network-manager restart')
         sys.exit('\n['+R+'!'+W+'] Closing')
 
 if __name__ == "__main__":
@@ -459,6 +457,5 @@ if __name__ == "__main__":
         sniff(iface=mon_iface, store=0, prn=cb)
     except Exception as msg:
         remove_mon_iface(mon_iface)
-        os.system('service network-manager restart')
         print '\n['+R+'!'+W+'] Closing'
         sys.exit(0)
